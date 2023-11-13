@@ -1,5 +1,7 @@
-import 'package:cardapio_pizzaria/pages/menu_cliente.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_hut/pages/home_page.dart';
+import 'package:pizza_hut/pages/menu_cliente.dart';
+import 'package:pizza_hut/pages/shopping_cart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true
       ),
-      home: const MyHomePage(),
+      home: const ShoppingCart(),
     );
   }
 }
@@ -32,6 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Menu_Cliente();
+    return const HomePageWidget();
   }
 }
