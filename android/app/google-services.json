@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "829179173617",
+    "project_id": "pizzahut-e350b",
+    "storage_bucket": "pizzahut-e350b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829179173617:android:5814039a3494ddb56f6750",
+        "android_client_info": {
+          "package_name": "com.mycompany.pizzahut"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2ohyt9k5CTS3gFR6XzgDmfvKS1VL_qtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
