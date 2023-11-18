@@ -1,4 +1,6 @@
 import 'package:pizza_hut/appbar/defaultappbar.dart';
+import 'package:pizza_hut/card/cardadd.dart';
+import 'package:pizza_hut/card/carditem.dart';
 import 'package:pizza_hut/widgets/card_personalizado_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -69,26 +71,10 @@ class _PaginaInicialWidgetState extends State<PaginaInicialWidget> {
               height: 350.0,
               fit: BoxFit.cover,
             ),
-            wrapWithModel(
-              model: _model.cardPersonalizadoModel1,
-              updateCallback: () => setState(() {}),
-              child: CardPersonalizadoWidget(),
-            ),
-            wrapWithModel(
-              model: _model.cardPersonalizadoModel2,
-              updateCallback: () => setState(() {}),
-              child: CardPersonalizadoWidget(),
-            ),
-            wrapWithModel(
-              model: _model.cardPersonalizadoModel3,
-              updateCallback: () => setState(() {}),
-              child: CardPersonalizadoWidget(),
-            ),
-            wrapWithModel(
-              model: _model.cardPersonalizadoModel4,
-              updateCallback: () => setState(() {}),
-              child: CardPersonalizadoWidget(),
-            ),
+            const CardItemAdd(),
+            const CardItemAdd(),
+            const CardItemAdd(),
+            const CardItemAdd()
           ],
         ),
       ),
