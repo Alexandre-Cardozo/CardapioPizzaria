@@ -1,13 +1,11 @@
 import 'package:pizza_hut/widgets/card_personalizado2_widget.dart';
 
-import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/button/iconedbutton.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'carrinho_com_conteudo_model.dart';
 export 'carrinho_com_conteudo_model.dart';
 
@@ -56,32 +54,22 @@ class _CarrinhoComConteudoWidgetState extends State<CarrinhoComConteudoWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: Color(0xF7AE1C1E),
+          backgroundColor: const Color(0xF7AE1C1E),
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
+          leading: IconedButton(
+              icon: Icons.arrow_back_rounded,
+              onPressed: () async {
+                context.pop();
+              }),
           title: Text(
             'Carrinho',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
-                  color: Color(0xFFF2F2F2),
+                  color: const Color(0xFFF2F2F2),
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -92,10 +80,10 @@ class _CarrinhoComConteudoWidgetState extends State<CarrinhoComConteudoWidget> {
             scrollDirection: Axis.vertical,
             children: [
               Align(
-                alignment: AlignmentDirectional(-1.00, 0.00),
+                alignment: const AlignmentDirectional(-1.00, 0.00),
                 child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 0.0, 10.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      20.0, 10.0, 0.0, 10.0),
                   child: Text(
                     'Produtos',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
