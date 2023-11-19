@@ -74,7 +74,7 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed("PaginaInicial");
+              context.pushNamed("Menu");
             },
           ),
           title: Padding(

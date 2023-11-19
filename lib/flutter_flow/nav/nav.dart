@@ -3,27 +3,22 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pizza_hut/components/carrinho_com_conteudo/carrinho_com_conteudo_widget.dart';
-import 'package:pizza_hut/components/carrinho_vazio/carrinho_vazio_widget.dart';
+import 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
+import 'package:pizza_hut/components/carrinho/carrinho_vazio.dart';
 import 'package:pizza_hut/components/gerenciar_pedidos/gerenciar_pedidos_widget.dart';
 import 'package:pizza_hut/components/historico_pedidos/historico_pedidos_widget.dart';
 import 'package:pizza_hut/components/login_administrador/login_administrador_widget.dart';
 import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento_widget.dart';
 import 'package:pizza_hut/components/menu_mesas/menu_mesas_widget.dart';
 import 'package:pizza_hut/components/menu_produtos/menu_produtos_widget.dart';
-import 'package:pizza_hut/components/meu_pedido/meu_pedido_widget.dart';
 import 'package:pizza_hut/components/pagamento_por_pix/pagamento_por_pix_widget.dart';
-import 'package:pizza_hut/components/pagina_inicial/pagina_inicial_widget.dart';
+import 'package:pizza_hut/components/menu/menu.dart';
 import 'package:pizza_hut/components/registrar_produto/registrar_produto_widget.dart';
 import 'package:provider/provider.dart';
 
-import '/backend/supabase/supabase.dart';
+import '../../components/pedido/pedido.dart';
 
 import '/index.dart';
-import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
 
@@ -36,6 +31,7 @@ class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
 
   static AppStateNotifier? _instance;
+
   static AppStateNotifier get instance => _instance ??= AppStateNotifier._();
 
   bool showSplashImage = true;
@@ -50,27 +46,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => PaginaInicialWidget(),
+      errorBuilder: (context, state) => const Menu(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => PaginaInicialWidget(),
+          builder: (context, _) => const Menu(),
         ),
         FFRoute(
-          name: 'PaginaInicial',
-          path: '/paginaInicial',
-          builder: (context, params) => PaginaInicialWidget(),
+          name: 'Menu',
+          path: '/Menu',
+          builder: (context, params) => const Menu(),
         ),
         FFRoute(
           name: 'CarrinhoComConteudo',
           path: '/carrinhoComConteudo',
-          builder: (context, params) => CarrinhoComConteudoWidget(),
+          builder: (context, params) => const CarrinhoComConteudo(),
         ),
         FFRoute(
-          name: 'MeuPedido',
-          path: '/meuPedido',
-          builder: (context, params) => MeuPedidoWidget(),
+          name: 'Pedido',
+          path: '/Pedido',
+          builder: (context, params) => const Pedido(),
         ),
         FFRoute(
           name: 'PagamentoPorPix',
@@ -110,7 +106,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'CarrinhoVazio',
           path: '/carrinhoVazio',
-          builder: (context, params) => CarrinhoVazioWidget(),
+          builder: (context, params) => const CarrinhoVazio(),
         ),
         FFRoute(
           name: 'MenuGerenciamento',
@@ -143,10 +139,12 @@ extension NavigationExtensions on BuildContext {
 extension _GoRouterStateExtensions on GoRouterState {
   Map<String, dynamic> get extraMap =>
       extra != null ? extra as Map<String, dynamic> : {};
+
   Map<String, dynamic> get allParams => <String, dynamic>{}
     ..addAll(pathParameters)
     ..addAll(queryParameters)
     ..addAll(extraMap);
+
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
       : TransitionInfo.appDefault();
@@ -166,9 +164,12 @@ class FFParameters {
       state.allParams.isEmpty ||
       (state.extraMap.length == 1 &&
           state.extraMap.containsKey(kTransitionInfoKey));
+
   bool isAsyncParam(MapEntry<String, dynamic> param) =>
       asyncParams.containsKey(param.key) && param.value is String;
+
   bool get hasFutures => state.allParams.entries.any(isAsyncParam);
+
   Future<bool> completeFutures() => Future.wait(
         state.allParams.entries.where(isAsyncParam).map(
           (param) async {
@@ -276,6 +277,7 @@ class TransitionInfo {
 
 class RootPageContext {
   const RootPageContext(this.isRootPage, [this.errorRoute]);
+
   final bool isRootPage;
   final String? errorRoute;
 
