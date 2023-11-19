@@ -25,7 +25,7 @@ abstract class FlutterFlowTheme {
       : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
+    return Theme.of(context).brightness == Brightness.light
         ? DarkModeTheme()
         : LightModeTheme();
   }

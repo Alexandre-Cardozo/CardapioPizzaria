@@ -14,8 +14,8 @@ class CardItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
       child: Card(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        elevation: 5.0,
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+        elevation: 1.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
         ),
@@ -30,7 +30,7 @@ class CardItem extends StatelessWidget {
                   child: Text('Nome',
                       style: TextStyle(
                           fontFamily: 'Readex Pro',
-                          color: Color(0xFFF2F2F2),
+                          color: Color(0xFFC2C2C2),
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold)),
                 ),
@@ -41,7 +41,7 @@ class CardItem extends StatelessWidget {
                     'Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao',
                     style: TextStyle(
                         fontFamily: 'Readex Pro',
-                        color: Color(0xFFF2F2F2),
+                        color: Color(0xFFC2C2C2),
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold)),
               ),
@@ -53,7 +53,7 @@ class CardItem extends StatelessWidget {
                     child: Text('R\$ Preço',
                         style: TextStyle(
                             fontFamily: 'Readex Pro',
-                            color: Color(0xFF39D254),
+                            color: Color(0xB339D254),
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold)),
                   ),

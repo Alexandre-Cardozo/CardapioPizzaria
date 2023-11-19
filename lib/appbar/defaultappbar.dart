@@ -7,13 +7,13 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       {super.key,
       required this.firstIcon,
       this.firstOnPressed,
-      required this.secondIcon,
+      this.secondIcon,
       this.secondOnPressed,
       required this.title});
 
   final IconData firstIcon;
   final Function()? firstOnPressed;
-  final IconData secondIcon;
+  final IconData? secondIcon;
   final Function()? secondOnPressed;
   final String title;
 
@@ -28,7 +28,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: Color(0xFFF2F2F2),
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold)),
-        actions: [IconedButton(icon: secondIcon, onPressed: secondOnPressed)],
+        actions: [
+          if (secondIcon != null)
+            IconedButton(icon: secondIcon!, onPressed: secondOnPressed)
+        ],
         centerTitle: true,
         elevation: 10.0);
   }
