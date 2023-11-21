@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:toast/toast.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -38,6 +39,8 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.auth = FirebaseAuth.instance;
   }
 
   @override
@@ -276,9 +279,16 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () {
-                        FirebaseAuth.instance.signInWithEmailAndPassword(email: _model.textController1.text, password: _model.textController2.text);
-                        print(Text(_model.textController2.text));
-                        //context.pushNamed("MenuGerenciamento");
+                        try {
+                          auth.signInWithEmailAndPassword(
+                              email: _model.textController1.text,
+                              password: _model.textController2.text);
+                          print(Text(_model.textController2.text));
+                          context.pushNamed("MenuGerenciamento");
+                        } catch(error) {
+                          Toast.show(error.toString());
+                        }
+
                       },
                       text: 'Entrar',
                       options: FFButtonOptions(

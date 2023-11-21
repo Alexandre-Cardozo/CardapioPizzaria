@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -22,7 +24,7 @@ class LoginAdministradorModel
   TextEditingController? textController2;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? textController2Validator;
-
+  late FirebaseAuth auth;
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
