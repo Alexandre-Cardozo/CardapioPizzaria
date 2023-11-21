@@ -43,7 +43,7 @@ dependencies:
   google_fonts: 4.0.3
   gotrue: 1.11.0
   hive: 2.2.3
-  intl: 0.18.1
+  intl: 0.18.0
   json_path: 0.6.2
   page_transition: 2.0.4
   path_provider: 2.0.14
@@ -81,6 +81,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   toast: ^0.3.0
+  firebase_auth: ^4.6.2
 
 dependency_overrides:
   rxdart: 0.27.7

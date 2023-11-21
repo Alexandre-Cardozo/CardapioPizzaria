@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_administrador_model.dart';
 export 'login_administrador_model.dart';
 
@@ -19,6 +24,7 @@ class LoginAdministradorWidget extends StatefulWidget {
 
 class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
   late LoginAdministradorModel _model;
+  late final FirebaseAuth auth;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -270,7 +276,9 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () {
-                        context.pushNamed("MenuGerenciamento");
+                        FirebaseAuth.instance.signInWithEmailAndPassword(email: _model.textController1.text, password: _model.textController2.text);
+                        print(Text(_model.textController2.text));
+                        //context.pushNamed("MenuGerenciamento");
                       },
                       text: 'Entrar',
                       options: FFButtonOptions(
@@ -304,4 +312,7 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
       ),
     );
   }
+
+
 }
+
