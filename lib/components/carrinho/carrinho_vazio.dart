@@ -15,6 +15,9 @@ class CarrinhoVazio extends StatefulWidget {
 class _CarrinhoVazioState extends State<CarrinhoVazio> {
   @override
   Widget build(BuildContext context) {
+    var orientation = MediaQuery.of(context).orientation;
+    bool isPortrait = orientation == Orientation.portrait;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
@@ -29,29 +32,35 @@ class _CarrinhoVazioState extends State<CarrinhoVazio> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      'O CARRINHO ESTÁ VAZIO!\n\nPara continuar selecione ao menos um item ao carrinho.',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            color: const Color(0xF7AE1C1E),
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'O CARRINHO ESTÁ VAZIO!\n\nPara continuar selecione ao menos um item ao carrinho.',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0xF7AE1C1E),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
                     ),
-                  ),
-                  Image.asset(
-                    'assets/images/pizza_hut.jpg',
-                    width: 350.0,
-                    height: 400.0,
-                    fit: BoxFit.cover,
-                  ),
-                ],
+                    Image.asset(
+                      'assets/images/pizza_hut.jpg',
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 3,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
               ),
             ),
             LargeTextButton(

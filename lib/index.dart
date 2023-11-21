@@ -3,7 +3,7 @@ export 'package:pizza_hut/components/menu/menu.dart'
     show Menu;
 export 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart'
     show CarrinhoComConteudoWidget;
-export 'package:pizza_hut/components/pedido/meu_pedido_widget.dart'
+export 'package:pizza_hut/components/pedido/pedido.dart'
     show MeuPedidoWidget;
 export 'package:pizza_hut/components/pagamento_por_pix/pagamento_por_pix_widget.dart'
     show PagamentoPorPixWidget;
