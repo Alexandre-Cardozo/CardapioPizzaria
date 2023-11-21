@@ -19,6 +19,8 @@ class _PedidoState extends State<Pedido> {
   final TextEditingController _observacoesController = TextEditingController();
   final TextEditingController _pagamentoController = TextEditingController();
   String formaPagamento = 'PIX';
+  bool isPixSelected = true;
+  bool isGarcomSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class _PedidoState extends State<Pedido> {
                               );
                               updateFormaPagamento('PIX');
                             },
+                            isToggled: isPixSelected,
                           ),
                           IconedTextButton(
                             text: "GARÇOM",
@@ -68,6 +71,7 @@ class _PedidoState extends State<Pedido> {
                               );
                               updateFormaPagamento('GARÇOM');
                             },
+                            isToggled: isGarcomSelected,
                           ),
                         ]),
                         Column(
@@ -165,8 +169,9 @@ class _PedidoState extends State<Pedido> {
 
   void updateFormaPagamento(String forma) {
     setState(() {
-      formaPagamento = forma;
-      _pagamentoController.text = 'Forma de Pagamento: \nModo: $formaPagamento';
+      isPixSelected = forma == 'PIX';
+      isGarcomSelected = forma == 'GARÇOM';
+      _pagamentoController.text = 'Forma de Pagamento: \nModo: $forma';
     });
   }
 }
