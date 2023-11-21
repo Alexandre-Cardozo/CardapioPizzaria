@@ -14,6 +14,9 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
+    var orientation = MediaQuery.of(context).orientation;
+    bool isPortrait = orientation == Orientation.portrait;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
@@ -32,9 +35,9 @@ class _MenuState extends State<Menu> {
         children: [
           Image.asset(
             'assets/images/pizza_hut.jpg',
-            width: 300.0,
-            height: 350.0,
-            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 3,
+            fit: BoxFit.contain,
           ),
           const CardItemAdd(),
           const CardItemAdd(),

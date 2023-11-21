@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pizza_hut/button/iconedtextbutton.dart';
+import 'package:pizza_hut/dialog/paymentdialog.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
+import '../../button/largetextbutton.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
-import '../../flutter_flow/flutter_flow_widgets.dart';
 
 class Pedido extends StatefulWidget {
   const Pedido({super.key});
@@ -14,6 +16,10 @@ class Pedido extends StatefulWidget {
 }
 
 class _PedidoState extends State<Pedido> {
+  final TextEditingController _observacoesController = TextEditingController();
+  final TextEditingController _pagamentoController = TextEditingController();
+  String formaPagamento = 'PIX';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,136 +35,138 @@ class _PedidoState extends State<Pedido> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              child: Column(
-                children: [
-                  const PointedBar(text: "Forma de Pagamento"),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 10.0, 0.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: 'PIX',
-                          icon: const Icon(
-                            Icons.pix,
-                            size: 15.0,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        Column(children: [
+                          const PointedBar(text: "Forma de Pagamento"),
+                          IconedTextButton(
+                            text: "PIX",
+                            icon: Icons.pix,
+                            onPressed: () {
+                              PaymentDialog(
+                                context,
+                                "Método de Pagamento",
+                                "Será gerado um QR CODE com um código para pagamento via PIX!\n\nGeração após FINALIZAR PEDIDO.",
+                                "OK",
+                              );
+                              updateFormaPagamento('PIX');
+                            },
                           ),
-                          options: FFButtonOptions(
-                            width: 200.0,
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xF7AE1C1E),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFFF2F2F2),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                          IconedTextButton(
+                            text: "GARÇOM",
+                            icon: Icons.person,
+                            onPressed: () {
+                              PaymentDialog(
+                                context,
+                                "Método de Pagamento",
+                                "Você poderá realizar o pagamento através do GARÇOM ou pelo CAIXA!",
+                                "OK",
+                              );
+                              updateFormaPagamento('GARÇOM');
+                            },
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 10.0, 0.0, 0.0),
-                        child: Text(
-                          'Será gerado um qr code com código para pagamento via pix',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 10.0, 0.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: const Text('Garçom'),
-                                  content: const Text(
-                                      'O garçom foi chamado para realizar o pagamento!'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: const Text('Ok'),
+                        ]),
+                        Column(
+                          children: [
+                            const PointedBar(text: "Confirmar Pedido"),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding:
+                                  const EdgeInsets.only(left: 10, bottom: 10),
+                              child: Text(
+                                'Valor Total do Pedido: \nR\$: ' '0,00',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          text: 'Garçom',
-                          icon: const Icon(
-                            Icons.person,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 200.0,
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xF7AE1C1E),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFFF2F2F2),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 10.0, 0.0, 5.0),
-                        child: Text(
-                          'O pagamento será efetuado pelo garçom assim que o pedido chegar.',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontWeight: FontWeight.bold,
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding:
+                                  const EdgeInsets.only(left: 10, bottom: 5),
+                              child: TextFormField(
+                                  controller: _pagamentoController,
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'Forma de Pagamento: \nModo: PIX',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold),
                                   ),
+                                  maxLines: 2,
+                                  enabled: false,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        Column(
+                          children: [
+                            const PointedBar(text: "Observações do Pedido"),
+                            TextFormField(
+                              controller: _observacoesController,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                hintText:
+                                    'Insira as aqui observações do Pedido',
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).labelMedium,
+                                contentPadding: const EdgeInsets.all(10),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    width: 2.0,
+                                  ),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                            )
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
+            LargeTextButton(
+              text: "Finalizar Pedido",
+              onPressed: () async {
+                if (formaPagamento == 'PIX') {
+                  context.pushNamed('PagamentoPorPix');
+                } else {
+                  context.pushNamed('Menu');
+                }
+              },
+            )
           ],
         ),
       ),
     );
+  }
+
+  void updateFormaPagamento(String forma) {
+    setState(() {
+      formaPagamento = forma;
+      _pagamentoController.text = 'Forma de Pagamento: \nModo: $formaPagamento';
+    });
   }
 }
