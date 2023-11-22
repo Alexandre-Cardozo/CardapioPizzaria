@@ -62,6 +62,5 @@ class _IconedTextButtonState extends State<IconedTextButton> {
         ),
       ),
     );
-    ;
   }
 }

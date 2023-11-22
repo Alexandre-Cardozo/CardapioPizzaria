@@ -14,9 +14,6 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context).orientation;
-    bool isPortrait = orientation == Orientation.portrait;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(

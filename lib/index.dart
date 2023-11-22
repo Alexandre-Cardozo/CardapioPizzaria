@@ -1,25 +1,13 @@
 // Export pages
-export 'package:pizza_hut/components/menu/menu.dart'
-    show Menu;
-export 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart'
-    show CarrinhoComConteudoWidget;
-export 'package:pizza_hut/components/pedido/pedido.dart'
-    show MeuPedidoWidget;
-export 'package:pizza_hut/components/pix/pix.dart'
-    show PagamentoPorPixWidget;
-export 'package:pizza_hut/components/gerenciar_pedidos/gerenciar_pedidos_widget.dart'
-    show GerenciarPedidosWidget;
-export 'package:pizza_hut/components/historico_pedidos/historico_pedidos_widget.dart'
-    show HistoricoPedidosWidget;
-export 'package:pizza_hut/components/menu_produtos/menu_produtos_widget.dart'
-    show MenuProdutosWidget;
-export 'package:pizza_hut/components/registrar_produto/registrar_produto_widget.dart'
-    show RegistrarProdutoWidget;
-export 'package:pizza_hut/components/menu_mesas/menu_mesas_widget.dart'
-    show MenuMesasWidget;
-export 'package:pizza_hut/components/login_administrador/login_administrador_widget.dart'
-    show LoginAdministradorWidget;
-export 'package:pizza_hut/components/carrinho/carrinho_vazio.dart'
-    show CarrinhoVazioWidget;
-export 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento_widget.dart'
-    show MenuGerenciamentoWidget;
+export 'package:pizza_hut/components/menu/menu.dart';
+export 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
+export 'package:pizza_hut/components/pedido/pedido.dart';
+export 'package:pizza_hut/components/pix/pix.dart';
+export 'package:pizza_hut/components/gerenciar_pedidos/gerenciar_pedidos_widget.dart';
+export 'package:pizza_hut/components/historico_pedidos/historico_pedidos_widget.dart';
+export 'package:pizza_hut/components/menu_produtos/menu_produtos_widget.dart';
+export 'package:pizza_hut/components/registrar_produto/registrar_produto_widget.dart';
+export 'package:pizza_hut/components/menu_mesas/menu_mesas_widget.dart';
+export 'package:pizza_hut/components/login_administrador/login_administrador_widget.dart';
+export 'package:pizza_hut/components/carrinho/carrinho_vazio.dart';
+export 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento_widget.dart';
