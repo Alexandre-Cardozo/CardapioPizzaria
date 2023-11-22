@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -25,6 +27,7 @@ class _MenuGerenciamentoWidgetState extends State<MenuGerenciamentoWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MenuGerenciamentoModel());
+    _model.auth = FirebaseAuth.instance;
   }
 
   @override
@@ -213,6 +216,7 @@ class _MenuGerenciamentoWidgetState extends State<MenuGerenciamentoWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () {
+                        unlogin();
                         context.pushNamed("LoginAdministrador");
                       },
                       text: 'Sair',
@@ -247,5 +251,9 @@ class _MenuGerenciamentoWidgetState extends State<MenuGerenciamentoWidget> {
         ),
       ),
     );
+  }
+
+  void unlogin() async {
+    _model.auth.signOut();
   }
 }
