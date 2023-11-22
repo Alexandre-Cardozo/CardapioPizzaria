@@ -18,7 +18,7 @@ class Pedido extends StatefulWidget {
 class _PedidoState extends State<Pedido> {
   final TextEditingController _observacoesController = TextEditingController();
   final TextEditingController _pagamentoController = TextEditingController();
-  String formaPagamento = 'PIX';
+  String forma = 'PIX';
   bool isPixSelected = true;
   bool isGarcomSelected = false;
 
@@ -80,18 +80,25 @@ class _PedidoState extends State<Pedido> {
                             Container(
                               alignment: Alignment.centerLeft,
                               padding:
-                                  const EdgeInsets.only(left: 10, bottom: 10),
-                              child: Text(
-                                'Valor Total do Pedido: \nR\$: ' '0,00',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
+                                  const EdgeInsets.only(left: 10),
+                              child: TextFormField(
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'Valor Total do Pedido: \nR\$: 0,00',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  maxLines: 2,
+                                  enabled: false,
+                                  style: const TextStyle(
+                                      color: Colors.black,
                                       fontFamily: 'Readex Pro',
                                       fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
+                                      fontWeight: FontWeight.bold)),
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
@@ -154,7 +161,7 @@ class _PedidoState extends State<Pedido> {
             LargeTextButton(
               text: "Finalizar Pedido",
               onPressed: () async {
-                if (formaPagamento == 'PIX') {
+                if (isPixSelected) {
                   context.pushNamed('PagamentoPorPix');
                 } else {
                   context.pushNamed('Menu');
