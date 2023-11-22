@@ -11,7 +11,7 @@ import 'package:pizza_hut/components/login_administrador/login_administrador_wid
 import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento_widget.dart';
 import 'package:pizza_hut/components/menu_mesas/menu_mesas_widget.dart';
 import 'package:pizza_hut/components/menu_produtos/menu_produtos_widget.dart';
-import 'package:pizza_hut/components/pagamento_por_pix/pagamento_por_pix_widget.dart';
+import 'package:pizza_hut/components/pix/pix.dart';
 import 'package:pizza_hut/components/menu/menu.dart';
 import 'package:pizza_hut/components/registrar_produto/registrar_produto_widget.dart';
 import 'package:provider/provider.dart';
@@ -46,32 +46,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const Menu(),
+      errorBuilder: (context, state) => Menu(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const Menu(),
+          builder: (context, _) => Menu(),
         ),
         FFRoute(
           name: 'Menu',
           path: '/Menu',
-          builder: (context, params) => const Menu(),
+          builder: (context, params) => Menu(),
         ),
         FFRoute(
           name: 'CarrinhoComConteudo',
           path: '/carrinhoComConteudo',
-          builder: (context, params) => const CarrinhoComConteudo(),
+          builder: (context, params) => CarrinhoComConteudo(),
         ),
         FFRoute(
           name: 'Pedido',
           path: '/Pedido',
-          builder: (context, params) => const Pedido(),
+          builder: (context, params) => Pedido(),
         ),
         FFRoute(
           name: 'PagamentoPorPix',
           path: '/pagamentoPorPix',
-          builder: (context, params) => PagamentoPorPixWidget(),
+          builder: (context, params) => Pix(),
         ),
         FFRoute(
           name: 'GerenciarPedidos',

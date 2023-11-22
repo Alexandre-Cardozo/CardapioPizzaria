@@ -5,7 +5,7 @@ export 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart'
     show CarrinhoComConteudoWidget;
 export 'package:pizza_hut/components/pedido/pedido.dart'
     show MeuPedidoWidget;
-export 'package:pizza_hut/components/pagamento_por_pix/pagamento_por_pix_widget.dart'
+export 'package:pizza_hut/components/pix/pix.dart'
     show PagamentoPorPixWidget;
 export 'package:pizza_hut/components/gerenciar_pedidos/gerenciar_pedidos_widget.dart'
     show GerenciarPedidosWidget;
