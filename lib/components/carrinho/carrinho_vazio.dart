@@ -15,8 +15,6 @@ class CarrinhoVazio extends StatefulWidget {
 class _CarrinhoVazioState extends State<CarrinhoVazio> {
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context).orientation;
-    bool isPortrait = orientation == Orientation.portrait;
 
     return Scaffold(
       backgroundColor: Colors.white,

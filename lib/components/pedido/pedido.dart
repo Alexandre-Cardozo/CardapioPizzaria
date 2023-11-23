@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/button/iconedtextbutton.dart';
 import 'package:pizza_hut/dialog/paymentdialog.dart';
+import 'package:pizza_hut/index.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
@@ -21,6 +22,7 @@ class _PedidoState extends State<Pedido> {
   String forma = 'PIX';
   bool isPixSelected = true;
   bool isGarcomSelected = false;
+  double valorTotalPedido = 0.11;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _PedidoState extends State<Pedido> {
                     Column(
                       children: [
                         Column(children: [
-                          const PointedBar(text: "Forma de Pagamento"),
+                          PointedBar(text: "Forma de Pagamento"),
                           IconedTextButton(
                             text: "PIX",
                             icon: Icons.pix,
@@ -76,21 +78,21 @@ class _PedidoState extends State<Pedido> {
                         ]),
                         Column(
                           children: [
-                            const PointedBar(text: "Confirmar Pedido"),
+                            PointedBar(text: "Confirmar Pedido"),
                             Container(
                               alignment: Alignment.centerLeft,
-                              padding:
-                                  const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 10),
                               child: TextFormField(
                                   autofocus: false,
                                   decoration: InputDecoration(
-                                    hintText: 'Valor Total do Pedido: \nR\$: 0,00',
+                                    hintText:
+                                        'Valor Total do Pedido: \nR\$: $valorTotalPedido',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold),
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold),
                                   ),
                                   maxLines: 2,
                                   enabled: false,
@@ -128,7 +130,7 @@ class _PedidoState extends State<Pedido> {
                         ),
                         Column(
                           children: [
-                            const PointedBar(text: "Observações do Pedido"),
+                            PointedBar(text: "Observações do Pedido"),
                             TextFormField(
                               controller: _observacoesController,
                               autofocus: false,
@@ -162,9 +164,21 @@ class _PedidoState extends State<Pedido> {
               text: "Finalizar Pedido",
               onPressed: () async {
                 if (isPixSelected) {
-                  context.pushNamed('PagamentoPorPix');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Pix(
+                        chavePix: valorTotalPedido.toString(),
+                      ),
+                    ),
+                  );
                 } else {
-                  context.pushNamed('Menu');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Menu(),
+                    ),
+                  );
                 }
               },
             )

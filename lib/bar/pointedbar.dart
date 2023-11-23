@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 
 class PointedBar extends StatelessWidget {
-  const PointedBar({super.key, required this.text});
+  PointedBar({super.key, required this.text, this.exibePoint});
 
   final String text;
+  bool ?exibePoint;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,15 @@ class PointedBar extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 15),
-              child: Icon(
-                Icons.circle_rounded,
-                color: Color(0xF7AE1C1E),
-                size: 24.0,
+            Visibility(
+              visible: exibePoint ?? true,
+              child: const Padding(
+                padding: EdgeInsets.only(left: 15),
+                child: Icon(
+                  Icons.circle_rounded,
+                  color: Color(0xF7AE1C1E),
+                  size: 24.0,
+                ),
               ),
             ),
             Padding(

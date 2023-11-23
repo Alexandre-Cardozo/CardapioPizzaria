@@ -29,7 +29,7 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
         top: true,
         child: Column(
           children: [
-            const PointedBar(text: "Produtos"),
+            PointedBar(text: "Produtos"),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
