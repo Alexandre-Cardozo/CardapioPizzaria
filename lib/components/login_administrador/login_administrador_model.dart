@@ -1,6 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'login_administrador_widget.dart' show LoginAdministradorWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LoginAdministradorModel
     extends FlutterFlowModel<LoginAdministradorWidget> {
@@ -16,7 +24,7 @@ class LoginAdministradorModel
   TextEditingController? textController2;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? textController2Validator;
-
+  late FirebaseAuth auth;
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {

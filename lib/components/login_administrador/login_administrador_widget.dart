@@ -1,9 +1,17 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_administrador_model.dart';
 export 'login_administrador_model.dart';
 
@@ -30,6 +38,8 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.auth = FirebaseAuth.instance;
   }
 
   @override
@@ -268,7 +278,14 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () {
-                        context.pushNamed("MenuGerenciamento");
+                        login(context);
+
+                        _model.auth.userChanges()
+                        .listen((User? user) {
+                          if(user != null) {
+                            Fluttertoast.showToast(msg: "Success!");
+                            context.pushNamed("MenuGerenciamento");
+                          }});
                       },
                       text: 'Entrar',
                       options: FFButtonOptions(
@@ -302,4 +319,15 @@ class _LoginAdministradorWidgetState extends State<LoginAdministradorWidget> {
       ),
     );
   }
+
+  void login(BuildContext context) async {
+    try {
+      UserCredential result = await _model.auth.signInWithEmailAndPassword(
+          email: _model.textController1.text,
+          password: _model.textController2.text);
+    } on FirebaseAuthException catch(error) {
+      Fluttertoast.showToast(msg: error.toString());
+    }
+  }
 }
+
