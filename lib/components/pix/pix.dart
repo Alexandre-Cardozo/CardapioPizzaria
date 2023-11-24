@@ -17,7 +17,7 @@ class Pix extends StatefulWidget {
   Pix({super.key, this.chavePix});
 
   String? chavePix;
-  int seconds = 5;
+  int seconds = 30;
 
   @override
   State<Pix> createState() => _PixState();
@@ -31,7 +31,10 @@ class _PixState extends State<Pix> {
   @override
   void initState() {
     super.initState();
-    _chavePIXController = TextEditingController(text: "${widget.chavePix}");
+    // ${widget.chavePix}
+    _chavePIXController = TextEditingController(
+        text:
+            "00020126580014BR.GOV.BCB.PIX0136bd6c459b-b3a0-49a3-b2e0-208ecbf5f73b5204000053039865802BR5925Alexandre da Silva Cardoz6009SAO PAULO610805409000622405200WgCA9f4kXpDzsK7wmtw630453B5");
     _countdownController = TextEditingController(text: '${widget.seconds} seg');
     startCountdown();
   }
@@ -66,7 +69,8 @@ class _PixState extends State<Pix> {
                       child: Container(
                         alignment: Alignment.center,
                         child: QrImageView(
-                          data: "${widget.chavePix}",
+                          data:
+                              "00020126580014BR.GOV.BCB.PIX0136bd6c459b-b3a0-49a3-b2e0-208ecbf5f73b5204000053039865802BR5925Alexandre da Silva Cardoz6009SAO PAULO610805409000622405200WgCA9f4kXpDzsK7wmtw630453B5",
                           version: QrVersions.auto,
                           size: 330.0,
                           padding: const EdgeInsets.all(20),
@@ -192,7 +196,7 @@ class _PixState extends State<Pix> {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (widget.seconds > 0) {
-          //widget.seconds--;
+          widget.seconds--;
           _countdownController.text = '${widget.seconds} seg';
         } else {
           PaymentDialog(
@@ -219,10 +223,7 @@ class _PixState extends State<Pix> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context); // Fecha o alerta
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Pedido()),
-                );
+                context.pushNamed('Menu');
               },
               child: const Text("OK"),
             ),

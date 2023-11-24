@@ -1,26 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
-import 'package:pizza_hut/components/carrinho/carrinho_vazio.dart';
-import 'package:pizza_hut/components/gerenciar_pedidos/gerenciar_pedidos_widget.dart';
-import 'package:pizza_hut/components/historico_pedidos/historico_pedidos_widget.dart';
-import 'package:pizza_hut/components/login_administrador/login_administrador_widget.dart';
-import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento_widget.dart';
-import 'package:pizza_hut/components/menu_mesas/menu_mesas_widget.dart';
-import 'package:pizza_hut/components/menu_produtos/menu_produtos_widget.dart';
-import 'package:pizza_hut/components/pix/pix.dart';
-import 'package:pizza_hut/components/menu/menu.dart';
-import 'package:pizza_hut/components/registrar_produto/registrar_produto_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/pedido/pedido.dart';
+import '../../components/login_administrador/login_administrador.dart';
 
 import '/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -101,7 +87,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'LoginAdministrador',
           path: '/loginAdministrador',
-          builder: (context, params) => LoginAdministradorWidget(),
+          builder: (context, params) => LoginAdministrador(),
         ),
         FFRoute(
           name: 'CarrinhoVazio',

@@ -43,7 +43,7 @@ dependencies:
   google_fonts: 4.0.3
   gotrue: 1.11.0
   hive: 2.2.3
-  intl: 0.18.0
+  intl: 0.18.1
   json_path: 0.6.2
   page_transition: 2.0.4
   path_provider: 2.0.14
@@ -83,6 +83,7 @@ dependencies:
   fluttertoast: ^8.2.4
   toast: ^0.2.9
   firebase_auth: ^4.6.2
+  qr_flutter: ^4.1.0
 
 dependency_overrides:
   rxdart: 0.27.7
