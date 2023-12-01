@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pizza_hut/card/cardmenuproduto.dart';
+import 'package:pizza_hut/card/cardmenupedido.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
 
-class MenuProdutos extends StatefulWidget {
-  const MenuProdutos({super.key});
+class GerenciarPedidos extends StatefulWidget {
+  const GerenciarPedidos({super.key});
 
   @override
-  State<MenuProdutos> createState() => _MenuProdutosState();
+  State<GerenciarPedidos> createState() => _GerenciarPedidosState();
 }
 
-class _MenuProdutosState extends State<MenuProdutos> {
+class _GerenciarPedidosState extends State<GerenciarPedidos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
-          title: "Menu Produtos",
+          title: "Gerenciar Pedidos",
           firstOnPressed: () {
             context.pushNamed('MenuGerenciamento');
           }),
@@ -30,8 +30,10 @@ class _MenuProdutosState extends State<MenuProdutos> {
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: LargeTextButton(
-                text: "Criar Produto",
-                onPressed: () async {},
+                text: "Histórico",
+                onPressed: () async {
+                  context.pushNamed('HistoricoPedidos');
+                },
               ),
             ),
             Expanded(
@@ -40,15 +42,19 @@ class _MenuProdutosState extends State<MenuProdutos> {
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 children: const [
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
-                  CardMenuProduto(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
+                  CardMenuPedido(),
                 ],
               ),
             ),

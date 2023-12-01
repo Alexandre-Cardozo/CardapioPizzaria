@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu_produtos/menu_produtos.dart';
 import 'package:provider/provider.dart';
 
+import '../../components/gerenciar_pedidos/gerenciar_pedidos.dart';
 import '../../components/login_administrador/login_administrador.dart';
 
 import '../../components/menu_gerenciamento/menu_gerenciamento.dart';
@@ -65,12 +66,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'GerenciarPedidos',
           path: '/gerenciarPedidos',
-          builder: (context, params) => GerenciarPedidosWidget(),
+          builder: (context, params) => GerenciarPedidos(),
         ),
         FFRoute(
           name: 'HistoricoPedidos',
           path: '/historicoPedidos',
-          builder: (context, params) => HistoricoPedidosWidget(),
+          builder: (context, params) => HistoricoPedidos(),
         ),
         FFRoute(
           name: 'MenuProdutos',

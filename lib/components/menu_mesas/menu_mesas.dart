@@ -19,7 +19,7 @@ class _MenuMesasState extends State<MenuMesas> {
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
-          title: "Menu Produtos",
+          title: "Menu Mesas",
           firstOnPressed: () {
             context.pushNamed('MenuGerenciamento');
           }),
@@ -53,6 +53,5 @@ class _MenuMesasState extends State<MenuMesas> {
         ),
       ),
     );
-    ;
   }
 }

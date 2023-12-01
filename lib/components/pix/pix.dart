@@ -11,7 +11,6 @@ import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
 import '../../dialog/paymentdialog.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
-import '../pedido/pedido.dart';
 
 class Pix extends StatefulWidget {
   Pix({super.key, this.chavePix});

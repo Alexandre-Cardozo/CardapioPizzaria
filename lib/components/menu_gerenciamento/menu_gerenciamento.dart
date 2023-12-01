@@ -52,6 +52,5 @@ class MenuGerenciamento extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
