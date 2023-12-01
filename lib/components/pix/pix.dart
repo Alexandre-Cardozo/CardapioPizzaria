@@ -48,7 +48,7 @@ class _PixState extends State<Pix> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
           title: "Pagamento",
@@ -79,8 +79,8 @@ class _PixState extends State<Pix> {
                     ),
                     Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(10.0),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
                           child: Text(
                             "Chave PIX:",
                             textAlign: TextAlign.center,
@@ -88,7 +88,7 @@ class _PixState extends State<Pix> {
                               fontFamily: 'Readex Pro',
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: FlutterFlowTheme.of(context).secondaryText,
                             ),
                           ),
                         ),
@@ -116,17 +116,17 @@ class _PixState extends State<Pix> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Copiar Chave:",
+                        Text("Copiar Chave:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: FlutterFlowTheme.of(context).secondaryText,
                             )),
                         IconedButton(
                           icon: Icons.copy,
-                          color: Colors.black,
+                          color: FlutterFlowTheme.of(context).secondaryText,
                           onPressed: _copyToClipboard,
                         )
                       ],
@@ -137,19 +137,19 @@ class _PixState extends State<Pix> {
             ),
             PointedBar(text: "Verificando Pagamento", exibePoint: false),
             Container(
-              color: FlutterFlowTheme.of(context).alternate,
+              color: Colors.white,
               height: MediaQuery.of(context).size.height / 10,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "Esgota em:",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Readex Pro',
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                     ),
                   ),
                   Padding(
@@ -163,11 +163,11 @@ class _PixState extends State<Pix> {
                             const InputDecoration(border: InputBorder.none),
                         enabled: false,
                         controller: _countdownController,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Readex Pro',
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: FlutterFlowTheme.of(context).secondaryText,
                         ),
                       ),
                     ),

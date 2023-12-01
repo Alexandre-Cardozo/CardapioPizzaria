@@ -27,7 +27,7 @@ class _PedidoState extends State<Pedido> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
           title: "Pedido",
@@ -92,7 +92,9 @@ class _PedidoState extends State<Pedido> {
                                         .override(
                                             fontFamily: 'Readex Pro',
                                             fontSize: 18.0,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText),
                                   ),
                                   maxLines: 2,
                                   enabled: false,
@@ -116,7 +118,9 @@ class _PedidoState extends State<Pedido> {
                                         .override(
                                             fontFamily: 'Readex Pro',
                                             fontSize: 18.0,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText),
                                   ),
                                   maxLines: 2,
                                   enabled: false,

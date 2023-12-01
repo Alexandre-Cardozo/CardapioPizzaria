@@ -62,9 +62,9 @@ class _CarrinhoVazioState extends State<CarrinhoVazio> {
               ),
             ),
             LargeTextButton(
-              text: "Ir para Carrinho com Itens",
+              text: "Voltar ao Menu",
               onPressed: () async {
-                context.pushNamed('CarrinhoComConteudo');
+                context.pushNamed('Menu');
               },
             )
           ],

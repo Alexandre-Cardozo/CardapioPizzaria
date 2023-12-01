@@ -5,7 +5,6 @@ import 'package:pizza_hut/bar/pointedbar.dart';
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
 import '../../card/cardremove.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
 
 class CarrinhoComConteudo extends StatefulWidget {
   const CarrinhoComConteudo({super.key});
@@ -18,7 +17,7 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
           title: "Carrinho",

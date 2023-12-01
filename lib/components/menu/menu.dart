@@ -24,7 +24,7 @@ class _MenuState extends State<Menu> {
             context.pushNamed('LoginAdministrador');
           },
           secondOnPressed: () {
-            context.pushNamed('CarrinhoVazio');
+            context.pushNamed('CarrinhoComConteudo');
           }),
       body: ListView(
         padding: EdgeInsets.zero,

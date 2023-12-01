@@ -51,7 +51,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
           title: "Login",

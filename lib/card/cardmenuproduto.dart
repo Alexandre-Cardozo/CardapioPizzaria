@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../button/iconedbutton.dart';
+import '../button/largetextbutton.dart';
+import '../button/smalltextbutton.dart';
 
-class CardItem extends StatelessWidget {
-  const CardItem({super.key, required this.icon, this.onPressed});
-
-  final IconData icon;
-  final Function()? onPressed;
+class CardMenuProduto extends StatelessWidget {
+  const CardMenuProduto({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class CardItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 10, left: 10),
+          padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
           child: Column(
             children: [
               const Align(
@@ -44,29 +42,36 @@ class CardItem extends StatelessWidget {
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold)),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text('R\$ Preço',
-                        style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            color: Color(0xB339D254),
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: IconedButton(
-                      icon: icon,
-                      size: 45,
-                      color: const Color(0xF7AE1C1E),
-                      onPressed: onPressed,
+              const Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text('R\$ Preço',
+                          style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xB339D254),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold)),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SmallTextButton(
+                    text: "Editar",
+                    onPressed: () async {},
+                  ),
+                  SmallTextButton(
+                    text: "Excluir",
+                    onPressed: () async {},
+                  )
+                ],
+              )
             ],
           ),
         ),

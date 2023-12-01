@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LargeTextButton extends StatelessWidget {
-  const LargeTextButton(
+class SmallTextButton extends StatelessWidget {
+  const SmallTextButton(
       {super.key, required this.text, required this.onPressed});
 
   final String text;
@@ -18,7 +18,7 @@ class LargeTextButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            fixedSize: const Size(300.0, 40.0)),
+            fixedSize: const Size(150.0, 40.0)),
         child: Text(
           text,
           style: const TextStyle(
