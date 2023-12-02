@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
+import 'package:pizza_hut/components/login_administrador/login_administrador.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../card/cardadd.dart';
@@ -21,10 +22,20 @@ class _MenuState extends State<Menu> {
           secondIcon: Icons.shopping_cart,
           title: "Mesa 000",
           firstOnPressed: () async {
-            context.pushNamed('LoginAdministrador');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginAdministrador(),
+              ),
+            );
           },
           secondOnPressed: () {
-            context.pushNamed('CarrinhoComConteudo');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CarrinhoComConteudo(),
+              ),
+            );
           }),
       body: ListView(
         padding: EdgeInsets.zero,

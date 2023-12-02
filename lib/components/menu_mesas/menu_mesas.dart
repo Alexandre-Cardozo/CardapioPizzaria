@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
@@ -21,7 +21,12 @@ class _MenuMesasState extends State<MenuMesas> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Menu Mesas",
           firstOnPressed: () {
-            context.pushNamed('MenuGerenciamento');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MenuGerenciamento(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,

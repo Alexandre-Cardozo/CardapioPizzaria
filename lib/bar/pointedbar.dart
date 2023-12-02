@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../flutter_flow/flutter_flow_theme.dart';
-
 class PointedBar extends StatelessWidget {
   PointedBar({super.key, required this.text, this.exibePoint});
 
   final String text;
-  bool ?exibePoint;
+  bool? exibePoint;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +12,8 @@ class PointedBar extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Container(
         height: 50.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryText,
+        decoration: const BoxDecoration(
+          color: Color(0xFF57636C),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -35,12 +33,12 @@ class PointedBar extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 text,
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Readex Pro',
-                      color: const Color(0xFFF2F2F2),
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: const TextStyle(
+                  fontFamily: 'Readex Pro',
+                  color: Color(0xFFF2F2F2),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

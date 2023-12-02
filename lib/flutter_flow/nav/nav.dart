@@ -81,7 +81,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'RegistrarProduto',
           path: '/registrarProduto',
-          builder: (context, params) => RegistrarProdutoWidget(),
+          builder: (context, params) => RegistrarProduto(),
         ),
         FFRoute(
           name: 'MenuMesas',

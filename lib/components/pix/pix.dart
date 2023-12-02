@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/button/iconedbutton.dart';
+import 'package:pizza_hut/components/pedido/pedido.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
@@ -10,7 +10,7 @@ import 'package:toast/toast.dart';
 import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
 import '../../dialog/paymentdialog.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
+import '../menu/menu.dart';
 
 class Pix extends StatefulWidget {
   Pix({super.key, this.chavePix});
@@ -52,7 +52,12 @@ class _PixState extends State<Pix> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Pagamento",
           firstOnPressed: () {
-            context.pushNamed('Pedido');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Pedido(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -78,8 +83,8 @@ class _PixState extends State<Pix> {
                     ),
                     Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
+                        const Padding(
+                          padding: EdgeInsets.all(10.0),
                           child: Text(
                             "Chave PIX:",
                             textAlign: TextAlign.center,
@@ -87,27 +92,36 @@ class _PixState extends State<Pix> {
                               fontFamily: 'Readex Pro',
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Color(0xFF57636C),
                             ),
                           ),
                         ),
                         TextFormField(
                           controller: _chavePIXController,
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          decoration: const InputDecoration(
+                            hintStyle: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFF57636C),
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14.0,
+                            ),
                             contentPadding:
-                                const EdgeInsets.only(left: 10, right: 10),
+                                EdgeInsets.only(left: 10, right: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                                color: Color(0xFF57636C),
                                 width: 2.0,
                               ),
                             ),
                           ),
                           enabled: false,
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style: const TextStyle(
+                            fontFamily: 'Readex Pro',
+                            color: Color(0xFF14181B),
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14.0,
+                          ),
                           maxLines: null,
                         )
                       ],
@@ -115,17 +129,17 @@ class _PixState extends State<Pix> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Copiar Chave:",
+                        const Text("Copiar Chave:",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Color(0xFF57636C),
                             )),
                         IconedButton(
                           icon: Icons.copy,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: const Color(0xFF57636C),
                           onPressed: _copyToClipboard,
                         )
                       ],
@@ -141,14 +155,14 @@ class _PixState extends State<Pix> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Esgota em:",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Readex Pro',
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
-                      color: FlutterFlowTheme.of(context).secondaryText,
+                      color: Color(0xFF57636C),
                     ),
                   ),
                   Padding(
@@ -162,11 +176,11 @@ class _PixState extends State<Pix> {
                             const InputDecoration(border: InputBorder.none),
                         enabled: false,
                         controller: _countdownController,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Readex Pro',
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Color(0xFF57636C),
                         ),
                       ),
                     ),
@@ -222,7 +236,12 @@ class _PixState extends State<Pix> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context); // Fecha o alerta
-                context.pushNamed('Menu');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Menu(),
+                  ),
+                );
               },
               child: const Text("OK"),
             ),

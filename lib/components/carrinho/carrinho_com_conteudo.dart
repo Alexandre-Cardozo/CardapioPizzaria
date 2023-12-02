@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/bar/pointedbar.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
 import '../../card/cardremove.dart';
+import '../menu/menu.dart';
+import '../pedido/pedido.dart';
 
 class CarrinhoComConteudo extends StatefulWidget {
   const CarrinhoComConteudo({super.key});
@@ -22,7 +23,12 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Carrinho",
           firstOnPressed: () {
-            context.pushNamed('Menu');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Menu(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -50,7 +56,12 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
             LargeTextButton(
               text: "Escolher forma de Pagamento",
               onPressed: () async {
-                context.pushNamed('Pedido');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Pedido(),
+                  ),
+                );
               },
             )
           ],

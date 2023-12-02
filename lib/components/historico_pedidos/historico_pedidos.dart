@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/card/cardhistorico.dart';
 
 import '../../bar/defaultappbar.dart';
@@ -20,7 +19,7 @@ class _HistoricoPedidosState extends State<HistoricoPedidos> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Historico Pedidos",
           firstOnPressed: () {
-            context.pop();
+            Navigator.of(context).pop();
           }),
       body: SafeArea(
         top: true,

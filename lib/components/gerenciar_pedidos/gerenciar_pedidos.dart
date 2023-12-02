@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/card/cardmenupedido.dart';
+import 'package:pizza_hut/components/historico_pedidos/historico_pedidos.dart';
+import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
@@ -21,7 +22,12 @@ class _GerenciarPedidosState extends State<GerenciarPedidos> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Gerenciar Pedidos",
           firstOnPressed: () {
-            context.pushNamed('MenuGerenciamento');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MenuGerenciamento(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -32,7 +38,12 @@ class _GerenciarPedidosState extends State<GerenciarPedidos> {
               child: LargeTextButton(
                 text: "Histórico",
                 onPressed: () async {
-                  context.pushNamed('HistoricoPedidos');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HistoricoPedidos(),
+                    ),
+                  );
                 },
               ),
             ),

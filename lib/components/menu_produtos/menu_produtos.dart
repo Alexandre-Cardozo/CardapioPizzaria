@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/card/cardmenuproduto.dart';
+import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
+import '../registrar_produto/registrar_produto.dart';
 
 class MenuProdutos extends StatefulWidget {
   const MenuProdutos({super.key});
@@ -21,7 +22,12 @@ class _MenuProdutosState extends State<MenuProdutos> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Menu Produtos",
           firstOnPressed: () {
-            context.pushNamed('MenuGerenciamento');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MenuGerenciamento(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -31,7 +37,14 @@ class _MenuProdutosState extends State<MenuProdutos> {
               padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: LargeTextButton(
                 text: "Criar Produto",
-                onPressed: () async {},
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegistrarProduto(),
+                    ),
+                  );
+                },
               ),
             ),
             Expanded(

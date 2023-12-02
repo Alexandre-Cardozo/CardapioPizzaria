@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:pizza_hut/components/gerenciar_pedidos/gerenciar_pedidos.dart';
+import 'package:pizza_hut/components/historico_pedidos/historico_pedidos.dart';
+import 'package:pizza_hut/components/login_administrador/login_administrador.dart';
+import 'package:pizza_hut/components/menu_mesas/menu_mesas.dart';
+import 'package:pizza_hut/components/menu_produtos/menu_produtos.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
@@ -15,7 +19,12 @@ class MenuGerenciamento extends StatelessWidget {
           firstIcon: Icons.arrow_back_rounded,
           title: "Menu Gerenciamento",
           firstOnPressed: () {
-            context.pushNamed('LoginAdministrador');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginAdministrador(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -26,25 +35,45 @@ class MenuGerenciamento extends StatelessWidget {
               LargeTextButton(
                 text: "Gerenciar Produtos",
                 onPressed: () async {
-                  context.pushNamed('MenuProdutos');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MenuProdutos(),
+                    ),
+                  );
                 },
               ),
               LargeTextButton(
                 text: "Gerenciar Mesas",
                 onPressed: () async {
-                  context.pushNamed('MenuMesas');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MenuMesas(),
+                    ),
+                  );
                 },
               ),
               LargeTextButton(
                 text: "Gerenciar Pedidos",
                 onPressed: () async {
-                  context.pushNamed('GerenciarPedidos');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const GerenciarPedidos(),
+                    ),
+                  );
                 },
               ),
               LargeTextButton(
                 text: "Histórico de Pedidos",
                 onPressed: () async {
-                  context.pushNamed('HistoricoPedidos');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HistoricoPedidos(),
+                    ),
+                  );
                 },
               )
             ],

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
+import '../menu/menu.dart';
 
 class CarrinhoVazio extends StatefulWidget {
   const CarrinhoVazio({super.key});
@@ -15,14 +14,18 @@ class CarrinhoVazio extends StatefulWidget {
 class _CarrinhoVazioState extends State<CarrinhoVazio> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
           firstIcon: Icons.arrow_back_rounded,
           title: "Carrinho",
           firstOnPressed: () {
-            context.pushNamed('Menu');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Menu(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -38,16 +41,15 @@ class _CarrinhoVazioState extends State<CarrinhoVazio> {
                       padding: const EdgeInsets.all(10.0),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        child: Text(
+                        child: const Text(
                           textAlign: TextAlign.center,
                           'O CARRINHO ESTÁ VAZIO!\n\nPara continuar selecione ao menos um item ao carrinho.',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xF7AE1C1E),
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: TextStyle(
+                            fontFamily: 'Readex Pro',
+                            color: Color(0xF7AE1C1E),
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -64,7 +66,12 @@ class _CarrinhoVazioState extends State<CarrinhoVazio> {
             LargeTextButton(
               text: "Voltar ao Menu",
               onPressed: () async {
-                context.pushNamed('Menu');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Menu(),
+                  ),
+                );
               },
             )
           ],

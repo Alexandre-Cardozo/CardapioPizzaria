@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../button/largetextbutton.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
 
 class CardMesa extends StatelessWidget {
   const CardMesa({super.key});
@@ -32,31 +31,26 @@ class CardMesa extends StatelessWidget {
                         width: 200.0,
                         height: 100.0,
                         color: const Color(0xFF57636C),
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Mesa',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFFF2F2F2),
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: TextStyle(
+                                fontFamily: 'Readex Pro',
+                                color: Color(0xFFF2F2F2),
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text(
                               '021',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    fontSize: 30.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: TextStyle(
+                                fontFamily: 'Readex Pro',
+                                color: Color(0xFFF1F4F8),
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             )
                           ],
                         ),
@@ -65,10 +59,8 @@ class CardMesa extends StatelessWidget {
                         width: 100.0,
                         height: 100.0,
                         color: const Color(0xFF898C8F),
-                        child: QrImageView(
-                            data:
-                                "001",
-                            version: QrVersions.auto),
+                        child:
+                            QrImageView(data: "001", version: QrVersions.auto),
                       )
                     ],
                   ),

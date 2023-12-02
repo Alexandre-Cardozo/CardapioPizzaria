@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_hut/components/registrar_produto/registrar_produto.dart';
 
 import '../button/smalltextbutton.dart';
 
@@ -63,7 +64,14 @@ class CardMenuProduto extends StatelessWidget {
                 children: [
                   SmallTextButton(
                     text: "Editar",
-                    onPressed: () async {},
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegistrarProduto(),
+                        ),
+                      );
+                    },
                   ),
                   SmallTextButton(
                     text: "Excluir",

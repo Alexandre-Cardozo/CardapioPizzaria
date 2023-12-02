@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pizza_hut/button/iconedtextbutton.dart';
+import 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
 import 'package:pizza_hut/dialog/paymentdialog.dart';
-import 'package:pizza_hut/index.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
 import '../../button/largetextbutton.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
+import '../menu/menu.dart';
+import '../pix/pix.dart';
 
 class Pedido extends StatefulWidget {
   const Pedido({super.key});
@@ -32,7 +32,12 @@ class _PedidoState extends State<Pedido> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Pedido",
           firstOnPressed: () {
-            context.pushNamed('CarrinhoComConteudo');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CarrinhoComConteudo(),
+              ),
+            );
           }),
       body: SafeArea(
         top: true,
@@ -87,14 +92,11 @@ class _PedidoState extends State<Pedido> {
                                   decoration: InputDecoration(
                                     hintText:
                                         'Valor Total do Pedido: \nR\$: $valorTotalPedido',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText),
+                                    hintStyle: const TextStyle(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF57636C)),
                                   ),
                                   maxLines: 2,
                                   enabled: false,
@@ -111,16 +113,13 @@ class _PedidoState extends State<Pedido> {
                               child: TextFormField(
                                   controller: _pagamentoController,
                                   autofocus: false,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: 'Forma de Pagamento: \nModo: PIX',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText),
+                                    hintStyle: TextStyle(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF57636C)),
                                   ),
                                   maxLines: 2,
                                   enabled: false,
@@ -138,21 +137,29 @@ class _PedidoState extends State<Pedido> {
                             TextFormField(
                               controller: _observacoesController,
                               autofocus: false,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText:
                                     'Insira as aqui observações do Pedido',
-                                hintStyle:
-                                    FlutterFlowTheme.of(context).labelMedium,
-                                contentPadding: const EdgeInsets.all(10),
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Readex Pro',
+                                  color: Color(0xFF57636C),
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14.0,
+                                ),
+                                contentPadding: EdgeInsets.all(10),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Color(0xFF57636C),
                                     width: 2.0,
                                   ),
                                 ),
                               ),
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              style: const TextStyle(
+                                fontFamily: 'Readex Pro',
+                                color: Color(0xFF14181B),
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14.0,
+                              ),
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                             )
