@@ -102,6 +102,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
+                              textInputAction: TextInputAction.next,
                               controller: textController1,
                               focusNode: textFieldFocusNode1,
                               autofocus: true,
@@ -171,6 +172,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
+                              textInputAction: TextInputAction.next,
                               controller: textController2,
                               focusNode: textFieldFocusNode2,
                               obscureText: !passwordVisibility,
