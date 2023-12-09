@@ -13,11 +13,13 @@ class _CardItemRemoveState extends State<CardItemRemove> {
   @override
   Widget build(BuildContext context) {
     ToastContext().init(context);
-    return CardItem(
-        icon: Icons.remove,
-        onPressed: () => Toast.show("Item removido!",
-            duration: 2,
-            gravity: Toast.bottom,
-            backgroundColor: const Color(0xF7AE1C1E)));
+    // return CardItem(
+    //     icon: Icons.remove,
+    //     onPressed: () => Toast.show("Item removido!",
+    //         duration: 2,
+    //         gravity: Toast.bottom,
+    //         backgroundColor: const Color(0xF7AE1C1E))
+    //     );
+    return Container();
   }
 }
