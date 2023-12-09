@@ -49,52 +49,53 @@ class _MenuProdutosState extends State<MenuProdutos> {
             );
           }),
       body: StreamBuilder<List<Product>>(
-        stream: _productController.productStream,
-        builder: (context, snapshot) {
-          return SafeArea(
-            top: true,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 20),
-                  child: LargeTextButton(
-                    text: "Criar Produto",
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegistrarProduto(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                if (snapshot.data != null)
-                  Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: ((context, index) => Column(
-                        children: [
-                          CardMenuProduto(
-                            id: snapshot.data![index].productId!,
-                            name: snapshot.data![index].name!,
-                            unitaryValue: snapshot.data![index].unitaryValue,
-                            description: snapshot.data![index].description!,
+          stream: _productController.productStream,
+          builder: (context, snapshot) {
+            return SafeArea(
+              top: true,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 20),
+                    child: LargeTextButton(
+                      text: "Criar Produto",
+                      onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegistrarProduto(),
                           ),
-                        ],
-                      )
-                      
-                      ),
+                        );
+                        _loadProducts();
+                      },
                     ),
                   ),
-              ],
-            ),
-          );
-        }
-      ),
+                  if (snapshot.data != null)
+                    Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: ((context, index) {
+                          final product = snapshot.data![index];
+                          return Column(
+                            children: [
+                              CardMenuProduto(
+                                id: product.productId!,
+                                name: product.name!,
+                                unitaryValue: product.unitaryValue, 
+                                description: product.description!, 
+                              ),
+                            ],
+                          );
+                        }),
+                      ),
+                    ),
+                ],
+              ),
+            );
+          }),
     );
   }
 }

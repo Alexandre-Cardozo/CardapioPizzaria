@@ -2,11 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento.dart';
 import 'package:pizza_hut/flutter_flow/flutter_flow_model.dart';
+import 'package:toast/toast.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
-import 'package:toast/toast.dart';
-
 import '../menu/menu.dart';
 
 class LoginAdministrador extends StatefulWidget {
@@ -240,7 +239,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
             LargeTextButton(
               text: "Entrar",
               onPressed: () async {
-                login(context);
+                // login(context);
 
                 auth.userChanges().listen((User? user) {
                   if (user != null) {

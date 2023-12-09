@@ -8,7 +8,13 @@ import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
 
 class RegistrarProduto extends StatefulWidget {
-  const RegistrarProduto({super.key});
+
+  final Product? product;
+
+  const RegistrarProduto({
+    super.key,
+    this.product,
+  });
 
   @override
   State<RegistrarProduto> createState() => _RegistrarProdutoState();
@@ -29,12 +35,22 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
 
   @override
   void initState() {
+
     textController1 ??= TextEditingController();
     textController2 ??= TextEditingController();
     textController3 ??= TextEditingController();
+
+    if(widget.product != null) {
+      addProductController.setData(widget.product!);
+      textController1?.text = widget.product!.name!;
+      textController2?.text = widget.product!.unitaryValue.toString();
+      textController3?.text = widget.product!.description!;
+    } else {
+      addProductController.resert();
+      addProductController.initialize();
+    }
+    
     product = Product();
-    addProductController.resert();
-    addProductController.initialize();
     super.initState();
   }
 
@@ -96,7 +112,6 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                                   
                                 product.name = newValue,
                                 addProductController.setName(newValue),
-                                addProductController.setData(product),
 
                               },
                               validator: (value) {
@@ -171,8 +186,7 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                             child: TextFormField(
                               controller: textController2,
                               onChanged: (newValue) => {
-                                product.unitaryValue = double.parse(newValue),
-                                addProductController.setData(product),
+                                addProductController.setUnitaryValue(double.parse(newValue)),
                               },
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -252,8 +266,9 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                             child: TextFormField(
                               controller: textController3,
                               onChanged: (newValue) => {
-                                  product.description = newValue,
-                                  addProductController.setData(product),
+
+                                  addProductController.setDescription(newValue)
+
                               },
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(

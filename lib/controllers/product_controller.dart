@@ -50,4 +50,15 @@ class ProductControler extends ChangeNotifier{
     }
   }
 
+  Future<bool> updateProduct(Product product) async {
+    try {
+      await _firebase.updateData(data: product, collection: _collection, id: product.productId!);
+      return true;
+    } catch (e, stackTrace) {
+      return Future.error(
+          "Erro ao tentar atualizar o Produto ${e.toString()}{",
+          stackTrace);
+    }
+  }
+
 }
