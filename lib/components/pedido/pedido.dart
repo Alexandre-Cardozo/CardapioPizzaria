@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/button/iconedtextbutton.dart';
 import 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
+import 'package:pizza_hut/controllers/order_controller.dart';
 import 'package:pizza_hut/dialog/paymentdialog.dart';
+import 'package:pizza_hut/models/order.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
@@ -10,7 +12,10 @@ import '../menu/menu.dart';
 import '../pix/pix.dart';
 
 class Pedido extends StatefulWidget {
-  const Pedido({super.key});
+
+  final Order? order;
+
+  const Pedido({super.key,  this.order});
 
   @override
   State<Pedido> createState() => _PedidoState();
@@ -19,10 +24,21 @@ class Pedido extends StatefulWidget {
 class _PedidoState extends State<Pedido> {
   final TextEditingController _observacoesController = TextEditingController();
   final TextEditingController _pagamentoController = TextEditingController();
+  final OrderController _orderController = OrderController();
+
   String forma = 'PIX';
   bool isPixSelected = true;
   bool isGarcomSelected = false;
-  double valorTotalPedido = 0.11;
+  double valorTotalPedido = 0;
+
+
+  @override
+  void initState() {
+    super.initState();
+    widget.order?.products.forEach((element) {
+      valorTotalPedido += element.unitaryValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +51,7 @@ class _PedidoState extends State<Pedido> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const CarrinhoComConteudo(),
+                builder: (context) => CarrinhoComConteudo(order: widget.order,),
               ),
             );
           }),
@@ -174,6 +190,9 @@ class _PedidoState extends State<Pedido> {
             LargeTextButton(
               text: "Finalizar Pedido",
               onPressed: () async {
+                widget.order?.orderValue = valorTotalPedido;
+                widget.order?.observation = _observacoesController.text;
+                _orderController.createOrder(widget.order!);
                 if (isPixSelected) {
                   Navigator.push(
                     context,

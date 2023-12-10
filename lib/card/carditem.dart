@@ -4,7 +4,12 @@ import 'package:pizza_hut/models/product_model.dart';
 import '../button/iconedbutton.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem({super.key, required this.icon, this.onPressed, required this.product});
+  const CardItem({
+    super.key, 
+    required this.icon, 
+    this.onPressed, 
+    required this.product,
+    });
 
   final IconData icon;
   final Function()? onPressed;

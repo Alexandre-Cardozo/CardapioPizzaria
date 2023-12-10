@@ -68,4 +68,13 @@ class FirebaseController {
     }
   }
 
+  Future<Map<String, dynamic>> findData(String collection, String id) async {
+    try {
+      final response = await _db.collection(collection).doc(id).get();
+      return response.data()!;
+    } catch (e, stackTrace) {
+      return Future.error(e.toString(), stackTrace);
+    }
+  }
+
 }

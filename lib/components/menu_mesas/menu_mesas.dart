@@ -51,7 +51,7 @@ class _MenuMesasState extends State<MenuMesas> {
               child: LargeTextButton(
                 text: "Criar Mesa",
                 onPressed: () async {
-                  TableUser table = TableUser(numberTable: '001');
+                  TableUser table = TableUser(numberTable: '002');
                   await _tableController.createTable(table);
                   await loadTables();
                 },

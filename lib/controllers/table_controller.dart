@@ -49,4 +49,16 @@ class TableController extends ChangeNotifier {
     }
   }
 
+  // Find table
+  Future<TableUser> findTable(String id) async {
+    try {
+      Map<String, dynamic> table =
+          await _firebase.findData(collection, id);
+      return TableUser.empty().fromMap(table);
+    } catch (e, stackTrace) {
+      return Future.error(
+          "Erro ao tentar buscar a Mesa: ${e.toString()}", stackTrace);
+    }
+  }
+
 }

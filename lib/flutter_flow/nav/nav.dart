@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pizza_hut/components/menu/qrcode_scanner_screen.dart';
 import 'package:pizza_hut/components/menu_produtos/menu_produtos.dart';
 import 'package:provider/provider.dart';
 
@@ -36,12 +37,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => Menu(),
+      errorBuilder: (context, state) => const QRCodePage(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => Menu(),
+          builder: (context, _) => const QRCodePage(),
         ),
         FFRoute(
           name: 'Menu',

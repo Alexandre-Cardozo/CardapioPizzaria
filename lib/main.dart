@@ -1,7 +1,10 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:pizza_hut/components/menu/table_code_provide.dart';
+import 'package:provider/provider.dart';
 
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
@@ -20,7 +23,12 @@ void main() async {
 
   await Firebase.initializeApp();
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TableCodeProvider(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -61,6 +69,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+
       title: 'PizzaHut',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [

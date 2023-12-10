@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/bar/pointedbar.dart';
+import 'package:pizza_hut/card/carditem.dart';
+import 'package:pizza_hut/models/order.dart';
+import 'package:pizza_hut/models/product_model.dart';
+import 'package:toast/toast.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
@@ -8,13 +12,20 @@ import '../menu/menu.dart';
 import '../pedido/pedido.dart';
 
 class CarrinhoComConteudo extends StatefulWidget {
-  const CarrinhoComConteudo({super.key});
+  final Order? order;
+
+  const CarrinhoComConteudo({super.key, this.order});
 
   @override
   State<CarrinhoComConteudo> createState() => _CarrinhoComConteudoState();
 }
 
 class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +34,10 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
           firstIcon: Icons.arrow_back_rounded,
           title: "Carrinho",
           firstOnPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const Menu(),
+                builder: (context) => Menu(order: widget.order),
               ),
             );
           }),
@@ -36,21 +47,21 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
           children: [
             PointedBar(text: "Produtos"),
             Expanded(
-              child: ListView(
+              child: ListView.builder(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                children: const [
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove(),
-                  CardItemRemove()
-                ],
+                itemCount: widget.order!.products.length,
+                itemBuilder: (context, index) {
+                  if (widget.order!.products.isNotEmpty) {
+                    return Column(
+                      children: [
+                        // CardItemRemove(product: widget.order!.products[index], products: widget.order!.products),
+                        itemList(widget.order!.products[index])
+                      ],
+                    );
+                  }
+                },
               ),
             ),
             LargeTextButton(
@@ -59,7 +70,7 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Pedido(),
+                    builder: (context) => Pedido(order: widget.order),
                   ),
                 );
               },
@@ -69,4 +80,22 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
       ),
     );
   }
+
+  Widget itemList(Product product) {
+    ToastContext().init(context);
+    return CardItem(
+      icon: Icons.remove,
+      onPressed: () {
+        widget.order!.products.remove(product);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CarrinhoComConteudo(order: widget.order),
+          ),
+        );
+      },
+      product: product
+    );
+  }
+
 }
