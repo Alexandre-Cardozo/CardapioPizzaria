@@ -1,4 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pizza_hut/card/carditem.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu/menu.dart';
@@ -30,7 +29,7 @@ class _CardItemRemoveState extends State<CardItemRemove> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Menu(),
+            builder: (context) => const Menu(),
           ),
         );
       },

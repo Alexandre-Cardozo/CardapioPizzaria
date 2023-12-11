@@ -74,6 +74,8 @@ class _GerenciarPedidosState extends State<GerenciarPedidos> {
                         if (snapshot.hasData) {
                           final order = snapshot.data?[index];
                           return itemList(order!);
+                        } else {
+                          return null;
                         }
                       },
                     );

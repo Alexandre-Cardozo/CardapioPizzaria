@@ -33,7 +33,8 @@ class OrderController extends ChangeNotifier {
     List<Order> orders = [];
 
     for (var item in list) {
-      orders.add(Order().fromMap(item));
+      print(item['updateAt']);
+      orders.add(Order.empty().fromMap(item));
     }
 
     _orderStreamController.add(orders);
@@ -71,7 +72,7 @@ class OrderController extends ChangeNotifier {
     List<Map<String, dynamic>> list = await _firebase.findDataWithCondition(
       collection: collection,
       condName: "finished",
-      cond: "false",
+      cond: false,
     );
     List<Order> orders = [];
 

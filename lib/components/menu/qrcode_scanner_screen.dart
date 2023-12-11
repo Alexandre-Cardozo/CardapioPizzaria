@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:pizza_hut/components/login_administrador/login_administrador.dart';
 import 'package:pizza_hut/components/menu/menu.dart';
 import 'package:pizza_hut/components/menu/table_code_provide.dart';
 import 'package:pizza_hut/controllers/table_controller.dart';
@@ -26,7 +27,6 @@ class _QRCodePageState extends State<QRCodePage> {
     );
     setState(() {
       if (code != '-1') {
-
         Provider.of<TableCodeProvider>(context, listen: false).tableCode = code;
 
         Navigator.push(
@@ -55,11 +55,44 @@ class _QRCodePageState extends State<QRCodePage> {
                   style: const TextStyle(fontSize: 20),
                 ),
               ),
-            ElevatedButton.icon(
-              onPressed: readQRCode,
-              icon: const Icon(Icons.qr_code),
-              label: const Text('Ler QRCode'),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton.icon(
+                onPressed: readQRCode,
+                icon: const Icon(Icons.qr_code),
+                label: const Text('Ler QRCode'),
+              ),
             ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton.icon(
+                onPressed: () => {
+                  Provider.of<TableCodeProvider>(context, listen: false)
+                      .tableCode = "001",
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Menu(),
+                      ))
+                },
+                icon: const Icon(Icons.menu),
+                label: const Text('Pular para o Menu'),
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton.icon(
+                onPressed: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginAdministrador(),
+                      )),
+                },
+                icon: const Icon(Icons.admin_panel_settings_outlined),
+                label: const Text("Menu Gerente"),
+              ),
+            )
           ],
         ),
       ),

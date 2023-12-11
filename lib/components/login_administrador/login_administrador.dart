@@ -41,6 +41,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
 
   @override
   void dispose() {
+    super.dispose();
     unfocusNode.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
@@ -266,7 +267,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
   void login(BuildContext context) async {
     try {
       if (textController1 != null && textController2 != null) {
-        UserCredential result = await auth.signInWithEmailAndPassword(
+        await auth.signInWithEmailAndPassword(
           email: textController1!.text,
           password: textController2!.text,
         );

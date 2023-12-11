@@ -9,6 +9,7 @@ class Order extends IModel<Order> {
   String observation = '';
   String tableId = '';
   bool finished = false;
+  DateTime updateAt = DateTime.now();
   List<Product> products = [];
 
   Order({
@@ -18,7 +19,10 @@ class Order extends IModel<Order> {
     this.tableId = '',
     this.finished = false,
     this.products = const  [],
-  });
+    updateAt,
+  }) {
+    updateAt = (updateAt ?? DateTime.now());
+  }
 
   @override
   factory Order.empty() => Order(
@@ -28,6 +32,7 @@ class Order extends IModel<Order> {
     tableId: '',
     products: [],
     finished: false,
+    updateAt: DateTime.now(),
   );
 
   @override
@@ -37,6 +42,7 @@ class Order extends IModel<Order> {
     observation: map['observation'],
     tableId: map['tableId'],
     finished: map['finished'],
+    updateAt: parseDateTime(map['updateAt'].toString()),
   );
 
   @override
@@ -47,11 +53,12 @@ class Order extends IModel<Order> {
     'tableId': tableId,
     'products': products.map((e) => e.toMap()).toList(),
     'finished': finished,
+    'updateAt': updateAt,
   };
     
   @override
   String toString() {
-    return 'Order{orderId: $orderId, orderValue: $orderValue, observation: $observation}, products: $products, finished: $finished';
+    return 'Order{orderId: $orderId, orderValue: $orderValue, observation: $observation}, products: $products, finished: $finished, updateAt: $updateAt';
   }
 
 }

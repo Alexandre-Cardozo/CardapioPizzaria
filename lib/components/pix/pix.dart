@@ -12,11 +12,12 @@ import '../../bar/pointedbar.dart';
 import '../../dialog/paymentdialog.dart';
 import '../menu/menu.dart';
 
+// ignore: must_be_immutable
 class Pix extends StatefulWidget {
   Pix({super.key, this.chavePix});
 
-  String? chavePix;
-  int seconds = 30;
+  final String? chavePix;
+  late int seconds = 30;
 
   @override
   State<Pix> createState() => _PixState();
@@ -148,7 +149,7 @@ class _PixState extends State<Pix> {
                 ),
               ),
             ),
-            PointedBar(text: "Verificando Pagamento", exibePoint: false),
+            const PointedBar(text: "Verificando Pagamento", exibePoint: false),
             Container(
               color: Colors.white,
               height: MediaQuery.of(context).size.height / 10,

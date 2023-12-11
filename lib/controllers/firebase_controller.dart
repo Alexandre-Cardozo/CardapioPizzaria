@@ -94,10 +94,7 @@ class FirebaseController {
   }
 
   Future<List<Map<String, dynamic>>> findDataWithCondition(
-      {String collection = '', String condName = '', String cond = ''}) async {
-    if (cond.isEmpty || collection.isEmpty) {
-      return Future.error("Dados Inváidos para buscar", StackTrace.current);
-    }
+      {String collection = '', String condName = '', bool cond = false}) async {
     try {
       List<Map<String, dynamic>> res = [];
       final response = await _db

@@ -7,7 +7,6 @@ import 'package:toast/toast.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
-import '../../card/cardremove.dart';
 import '../menu/menu.dart';
 import '../pedido/pedido.dart';
 
@@ -45,7 +44,7 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
         top: true,
         child: Column(
           children: [
-            PointedBar(text: "Produtos"),
+            const PointedBar(text: "Produtos"),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,
@@ -56,11 +55,11 @@ class _CarrinhoComConteudoState extends State<CarrinhoComConteudo> {
                   if (widget.order!.products.isNotEmpty) {
                     return Column(
                       children: [
-                        // CardItemRemove(product: widget.order!.products[index], products: widget.order!.products),
                         itemList(widget.order!.products[index])
                       ],
                     );
-                  }
+                  } else {
+                    return null;}
                 },
               ),
             ),
