@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/button/iconedtextbutton.dart';
 import 'package:pizza_hut/components/carrinho/carrinho_com_conteudo.dart';
+import 'package:pizza_hut/components/menu/table_code_provide.dart';
 import 'package:pizza_hut/controllers/order_controller.dart';
 import 'package:pizza_hut/dialog/paymentdialog.dart';
 import 'package:pizza_hut/models/order.dart';
+import 'package:provider/provider.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../bar/pointedbar.dart';
@@ -42,6 +44,8 @@ class _PedidoState extends State<Pedido> {
 
   @override
   Widget build(BuildContext context) {
+    String? tableCode = Provider.of<TableCodeProvider>(context).tableCode;
+    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: DefaultAppBar(
@@ -192,6 +196,7 @@ class _PedidoState extends State<Pedido> {
               onPressed: () async {
                 widget.order?.orderValue = valorTotalPedido;
                 widget.order?.observation = _observacoesController.text;
+                widget.order?.tableId = tableCode!;
                 _orderController.createOrder(widget.order!);
                 if (isPixSelected) {
                   Navigator.push(

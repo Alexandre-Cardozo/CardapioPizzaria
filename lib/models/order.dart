@@ -8,6 +8,7 @@ class Order extends IModel<Order> {
   double orderValue = 0.0;
   String observation = '';
   String tableId = '';
+  bool finished = false;
   List<Product> products = [];
 
   Order({
@@ -15,6 +16,7 @@ class Order extends IModel<Order> {
     this.orderValue = 0.0,
     this.observation = '',
     this.tableId = '',
+    this.finished = false,
     this.products = const  [],
   });
 
@@ -25,6 +27,7 @@ class Order extends IModel<Order> {
     observation: '',
     tableId: '',
     products: [],
+    finished: false,
   );
 
   @override
@@ -33,6 +36,7 @@ class Order extends IModel<Order> {
     orderValue: map['orderValue'],
     observation: map['observation'],
     tableId: map['tableId'],
+    finished: map['finished'],
   );
 
   @override
@@ -42,11 +46,12 @@ class Order extends IModel<Order> {
     'observation': observation,
     'tableId': tableId,
     'products': products.map((e) => e.toMap()).toList(),
+    'finished': finished,
   };
     
   @override
   String toString() {
-    return 'Order{orderId: $orderId, orderValue: $orderValue, observation: $observation}, products: $products';
+    return 'Order{orderId: $orderId, orderValue: $orderValue, observation: $observation}, products: $products, finished: $finished';
   }
 
 }

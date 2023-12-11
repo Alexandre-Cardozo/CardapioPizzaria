@@ -77,4 +77,42 @@ class FirebaseController {
     }
   }
 
+  // Update only one field
+  Future<void> updateField(
+      {String collection = '',
+      String id = '',
+      String? field,
+      dynamic value}) async {
+    if (id.isEmpty || collection.isEmpty) {
+      return Future.error("Dados Inváidos para atualizar", StackTrace.current);
+    }
+    try {
+      await _db.collection(collection).doc(id).update({field!: value});
+    } catch (e, stackTrace) {
+      return Future.error(e.toString(), stackTrace);
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> findDataWithCondition(
+      {String collection = '', String condName = '', String cond = ''}) async {
+    if (cond.isEmpty || collection.isEmpty) {
+      return Future.error("Dados Inváidos para buscar", StackTrace.current);
+    }
+    try {
+      List<Map<String, dynamic>> res = [];
+      final response = await _db
+          .collection(collection)
+          .where(condName, isEqualTo: cond)
+          .get();
+      for (var element in response.docs) {
+        if (element.exists && element.data().isNotEmpty) {
+          res.add(element.data());
+        }
+      }
+
+      return res;
+    } catch (e, stackTrace) {
+      return Future.error(e.toString(), stackTrace);
+    }
+  }
 }
