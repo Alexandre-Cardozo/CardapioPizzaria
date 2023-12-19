@@ -2,18 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu/qrcode_scanner_screen.dart';
-import 'package:pizza_hut/components/menu_produtos/menu_produtos.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/gerenciar_pedidos/gerenciar_pedidos.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import '../../components/login_administrador/login_administrador.dart';
 
-import '../../components/menu_gerenciamento/menu_gerenciamento.dart';
-import '../../components/menu_mesas/menu_mesas.dart';
-import '/index.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-
 export 'package:go_router/go_router.dart';
+
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
@@ -47,17 +43,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Menu',
           path: '/Menu',
-          builder: (context, params) => Menu(),
+          builder: (context, params) => const Menu(),
         ),
         FFRoute(
           name: 'CarrinhoComConteudo',
           path: '/carrinhoComConteudo',
-          builder: (context, params) => CarrinhoComConteudo(),
+          builder: (context, params) => const CarrinhoComConteudo(),
         ),
         FFRoute(
           name: 'Pedido',
           path: '/Pedido',
-          builder: (context, params) => Pedido(),
+          builder: (context, params) => const Pedido(),
         ),
         FFRoute(
           name: 'PagamentoPorPix',
@@ -67,12 +63,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'GerenciarPedidos',
           path: '/gerenciarPedidos',
-          builder: (context, params) => GerenciarPedidos(),
+          builder: (context, params) => const GerenciarPedidos(),
         ),
         FFRoute(
           name: 'HistoricoPedidos',
           path: '/historicoPedidos',
-          builder: (context, params) => HistoricoPedidos(),
+          builder: (context, params) => const HistoricoPedidos(),
         ),
         FFRoute(
           name: 'MenuProdutos',
@@ -87,22 +83,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'MenuMesas',
           path: '/menuMesas',
-          builder: (context, params) => MenuMesas(),
+          builder: (context, params) => const MenuMesas(),
         ),
         FFRoute(
           name: 'LoginAdministrador',
           path: '/loginAdministrador',
-          builder: (context, params) => LoginAdministrador(),
+          builder: (context, params) => const LoginAdministrador(),
         ),
         FFRoute(
           name: 'CarrinhoVazio',
           path: '/carrinhoVazio',
-          builder: (context, params) => CarrinhoVazio(),
+          builder: (context, params) => const CarrinhoVazio(),
         ),
         FFRoute(
           name: 'MenuGerenciamento',
           path: '/menuGerenciamento',
-          builder: (context, params) => MenuGerenciamento(),
+          builder: (context, params) => const MenuGerenciamento(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

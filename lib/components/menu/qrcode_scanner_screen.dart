@@ -1,10 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:pizza_hut/components/login_administrador/login_administrador.dart';
+import 'package:pizza_hut/backend/firebase/firebase_config.dart';
 import 'package:pizza_hut/components/menu/menu.dart';
 import 'package:pizza_hut/components/menu/table_code_provide.dart';
 import 'package:pizza_hut/controllers/table_controller.dart';
+import 'package:pizza_hut/flutter_flow/flutter_flow_theme.dart';
 import 'package:provider/provider.dart';
+
+void initilize() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initFirebase();
+  await FlutterFlowTheme.initialize();
+  await Firebase.initializeApp();
+}
 
 class QRCodePage extends StatefulWidget {
   const QRCodePage({super.key});
@@ -79,20 +88,6 @@ class _QRCodePageState extends State<QRCodePage> {
                 label: const Text('Pular para o Menu'),
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton.icon(
-                onPressed: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginAdministrador(),
-                      )),
-                },
-                icon: const Icon(Icons.admin_panel_settings_outlined),
-                label: const Text("Menu Gerente"),
-              ),
-            )
           ],
         ),
       ),

@@ -238,50 +238,49 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
               ),
             ),
             LargeTextButton(
-              text: "Entrar",
-              onPressed: () async {
-                // login(context);
-
-                auth.userChanges().listen((User? user) {
-                  if (user != null) {
+                text: "Entrar",
+                onPressed: () async {
+                  if (await login(context)) {
                     Toast.show("Logado com Sucesso!",
                         duration: 2,
                         gravity: Toast.bottom,
                         backgroundColor: const Color(0xF7AE1C1E));
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MenuGerenciamento(),
-                      ),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MenuGerenciamento()));
                   }
-                });
-              },
-            )
+                })
           ],
         ),
       ),
     );
   }
 
-  void login(BuildContext context) async {
+  Future<bool> login(BuildContext context) async {
     try {
       if (textController1 != null && textController2 != null) {
         await auth.signInWithEmailAndPassword(
           email: textController1!.text,
           password: textController2!.text,
         );
+
+        return true;
       } else {
         Toast.show("Erro: controladores não inicializados",
             duration: 2,
             gravity: Toast.bottom,
             backgroundColor: const Color(0xF7AE1C1E));
+
+        return false;
       }
     } on FirebaseAuthException catch (error) {
-      Toast.show(error.toString(),
+      Toast.show("Credenciais inválidas",
           duration: 2,
           gravity: Toast.bottom,
           backgroundColor: const Color(0xF7AE1C1E));
     }
+
+    return false;
   }
 }
