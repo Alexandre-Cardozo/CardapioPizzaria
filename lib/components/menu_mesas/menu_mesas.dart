@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento.dart';
+import 'package:pizza_hut/controllers/table_controller.dart';
+import 'package:pizza_hut/models/table_model.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
@@ -13,6 +15,18 @@ class MenuMesas extends StatefulWidget {
 }
 
 class _MenuMesasState extends State<MenuMesas> {
+  final TableController _tableController = TableController();
+
+  Future<void> loadTables() async {
+    await _tableController.getAllTables();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadTables();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,24 +50,37 @@ class _MenuMesasState extends State<MenuMesas> {
               padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: LargeTextButton(
                 text: "Criar Mesa",
-                onPressed: () async {},
+                onPressed: () async {
+                  TableUser table = TableUser(numberTable: '003');
+                  await _tableController.createTable(table);
+                  await loadTables();
+                },
               ),
             ),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: const [
-                  CardMesa(),
-                  CardMesa(),
-                  CardMesa(),
-                  CardMesa(),
-                  CardMesa(),
-                  CardMesa(),
-                ],
-              ),
-            ),
+            StreamBuilder<List<TableUser>>(
+                stream: _tableController.tableStream,
+                builder: (context, snapshot) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: snapshot.data?.length,
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        if (snapshot.hasData) {
+                          final tableUser = snapshot.data![index];
+                          return Column(
+                            children: [
+                              CardMesa(tableUser: tableUser),
+                            ],
+                          );
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                  );
+                }),
           ],
         ),
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PointedBar extends StatelessWidget {
-  PointedBar({super.key, required this.text, this.exibePoint});
+  const PointedBar({super.key, required this.text, this.exibePoint});
 
   final String text;
-  bool? exibePoint;
+  final bool? exibePoint;
 
   @override
   Widget build(BuildContext context) {

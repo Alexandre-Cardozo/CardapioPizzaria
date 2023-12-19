@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_hut/models/product_model.dart';
 
 import '../button/iconedbutton.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem({super.key, required this.icon, this.onPressed});
+  const CardItem({
+    super.key, 
+    required this.icon, 
+    this.onPressed, 
+    required this.product,
+    });
 
   final IconData icon;
   final Function()? onPressed;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
       child: Card(
@@ -22,23 +30,23 @@ class CardItem extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10, left: 10),
           child: Column(
             children: [
-              const Align(
+              Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 5),
-                  child: Text('Nome',
-                      style: TextStyle(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text(product.name!,
+                      style: const TextStyle(
                           fontFamily: 'Readex Pro',
                           color: Color(0xFFC2C2C2),
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold)),
                 ),
               ),
-              const Align(
+              Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
-                    'Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao, Descricao',
-                    style: TextStyle(
+                    product.description!,
+                    style: const TextStyle(
                         fontFamily: 'Readex Pro',
                         color: Color(0xFFC2C2C2),
                         fontSize: 15.0,
@@ -47,10 +55,10 @@ class CardItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Align(
+                  Align(
                     alignment: AlignmentDirectional.centerStart,
-                    child: Text('R\$ Preço',
-                        style: TextStyle(
+                    child: Text('R\$ ${product.unitaryValue}',
+                        style: const TextStyle(
                             fontFamily: 'Readex Pro',
                             color: Color(0xB339D254),
                             fontSize: 20.0,

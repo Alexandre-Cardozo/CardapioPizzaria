@@ -8,7 +8,7 @@ class CardMenuPedido extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+      padding: const EdgeInsets.only(left: 10, right: 0, bottom: 5),
       child: Card(
         color: Colors.white,
         elevation: 1.0,
@@ -16,7 +16,7 @@ class CardMenuPedido extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+          padding: const EdgeInsets.only(top: 10, left: 0, right: 0),
           child: Column(
             children: [
               const Align(

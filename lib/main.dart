@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import '/backend/supabase/supabase.dart';
+import 'package:pizza_hut/components/menu/table_code_provide.dart';
+import 'package:provider/provider.dart';
+
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -14,14 +17,23 @@ void main() async {
   usePathUrlStrategy();
   await initFirebase();
 
-  await SupaFlow.initialize();
+  // await SupaFlow.initialize();
 
   await FlutterFlowTheme.initialize();
 
-  runApp(MyApp());
+  await Firebase.initializeApp();
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TableCodeProvider(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
@@ -57,6 +69,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+
       title: 'PizzaHut',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
@@ -66,7 +79,7 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: _locale,
-      supportedLocales: const [Locale('en', '')],
+      supportedLocales: const [Locale('pt', 'BR')],
       theme: ThemeData(
         brightness: Brightness.light,
         scrollbarTheme: const ScrollbarThemeData(),

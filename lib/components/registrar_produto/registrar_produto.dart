@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu_produtos/menu_produtos.dart';
+import 'package:pizza_hut/controllers/add_product_controller.dart';
 import 'package:pizza_hut/flutter_flow/flutter_flow_model.dart';
+import 'package:pizza_hut/models/product_model.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
 
 class RegistrarProduto extends StatefulWidget {
-  const RegistrarProduto({super.key});
+
+  final Product? product;
+
+  const RegistrarProduto({
+    super.key,
+    this.product,
+  });
 
   @override
   State<RegistrarProduto> createState() => _RegistrarProdutoState();
 }
 
+final addProductController = AddProductController();
+
 class _RegistrarProdutoState extends State<RegistrarProduto> {
   TextEditingController? textController1;
   TextEditingController? textController2;
   TextEditingController? textController3;
+
+  late Product product;
 
   String? Function(BuildContext, String?)? textController1Validator;
   String? Function(BuildContext, String?)? textController2Validator;
@@ -23,14 +35,28 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
 
   @override
   void initState() {
-    super.initState();
+
     textController1 ??= TextEditingController();
     textController2 ??= TextEditingController();
     textController3 ??= TextEditingController();
+
+    if(widget.product != null) {
+      addProductController.setData(widget.product!);
+      textController1?.text = widget.product!.name!;
+      textController2?.text = widget.product!.unitaryValue.toString();
+      textController3?.text = widget.product!.description!;
+    } else {
+      addProductController.resert();
+      addProductController.initialize();
+    }
+    
+    product = Product();
+    super.initState();
   }
 
   @override
   void dispose() {
+    super.dispose();
     textController1?.dispose();
     textController2?.dispose();
     textController3?.dispose();
@@ -81,6 +107,21 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
                               controller: textController1,
+                              keyboardType: TextInputType.text,
+                              onChanged: (newValue) => {
+                                  
+                                product.name = newValue,
+                                addProductController.setName(newValue),
+
+                              },
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira um nome';
+                                }
+                                return null;
+                              
+                              },
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                 labelStyle: const TextStyle(
                                   fontFamily: 'Readex Pro',
@@ -116,9 +157,6 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                                 fontWeight: FontWeight.normal,
                                 fontSize: 14.0,
                               ),
-                              keyboardType: TextInputType.name,
-                              validator:
-                                  textController1Validator.asValidator(context),
                             ),
                           )
                         ],
@@ -147,6 +185,10 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
                               controller: textController2,
+                              onChanged: (newValue) => {
+                                addProductController.setUnitaryValue(double.parse(newValue)),
+                              },
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                 labelStyle: const TextStyle(
                                   fontFamily: 'Readex Pro',
@@ -223,6 +265,12 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
                               controller: textController3,
+                              onChanged: (newValue) => {
+
+                                  addProductController.setDescription(newValue)
+
+                              },
+                              textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                 labelStyle: const TextStyle(
                                   fontFamily: 'Readex Pro',
@@ -273,6 +321,7 @@ class _RegistrarProdutoState extends State<RegistrarProduto> {
             LargeTextButton(
               text: "Salvar Alterações",
               onPressed: () async {
+                addProductController.onButtonClick(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

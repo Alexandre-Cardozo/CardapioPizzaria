@@ -2,11 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_hut/components/menu_gerenciamento/menu_gerenciamento.dart';
 import 'package:pizza_hut/flutter_flow/flutter_flow_model.dart';
+import 'package:toast/toast.dart';
 
 import '../../bar/defaultappbar.dart';
 import '../../button/largetextbutton.dart';
-import 'package:toast/toast.dart';
-
 import '../menu/menu.dart';
 
 class LoginAdministrador extends StatefulWidget {
@@ -42,6 +41,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
 
   @override
   void dispose() {
+    super.dispose();
     unfocusNode.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
@@ -102,6 +102,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
+                              textInputAction: TextInputAction.next,
                               controller: textController1,
                               focusNode: textFieldFocusNode1,
                               autofocus: true,
@@ -171,6 +172,7 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: TextFormField(
+                              textInputAction: TextInputAction.next,
                               controller: textController2,
                               focusNode: textFieldFocusNode2,
                               obscureText: !passwordVisibility,
@@ -236,50 +238,49 @@ class _LoginAdministradorState extends State<LoginAdministrador> {
               ),
             ),
             LargeTextButton(
-              text: "Entrar",
-              onPressed: () async {
-                login(context);
-
-                auth.userChanges().listen((User? user) {
-                  if (user != null) {
+                text: "Entrar",
+                onPressed: () async {
+                  if (await login(context)) {
                     Toast.show("Logado com Sucesso!",
                         duration: 2,
                         gravity: Toast.bottom,
                         backgroundColor: const Color(0xF7AE1C1E));
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MenuGerenciamento(),
-                      ),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MenuGerenciamento()));
                   }
-                });
-              },
-            )
+                })
           ],
         ),
       ),
     );
   }
 
-  void login(BuildContext context) async {
+  Future<bool> login(BuildContext context) async {
     try {
       if (textController1 != null && textController2 != null) {
-        UserCredential result = await auth.signInWithEmailAndPassword(
+        await auth.signInWithEmailAndPassword(
           email: textController1!.text,
           password: textController2!.text,
         );
+
+        return true;
       } else {
         Toast.show("Erro: controladores não inicializados",
             duration: 2,
             gravity: Toast.bottom,
             backgroundColor: const Color(0xF7AE1C1E));
+
+        return false;
       }
     } on FirebaseAuthException catch (error) {
-      Toast.show(error.toString(),
+      Toast.show("Credenciais inválidas",
           duration: 2,
           gravity: Toast.bottom,
           backgroundColor: const Color(0xF7AE1C1E));
     }
+
+    return false;
   }
 }
